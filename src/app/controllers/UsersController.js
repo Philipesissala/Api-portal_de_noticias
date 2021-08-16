@@ -1,12 +1,11 @@
 const Users = require('../models/Users');
 
-
 module.exports = {
     async index(req, res) {
         return await Users.findAll().then((datas) => {
             res.json(datas);
         }).catch((error) => {
-             res.json({ menssagem: `Erro ${error}` });
+            res.json({ menssagem: `Erro ${error}` });
         });
     },
 
@@ -39,7 +38,7 @@ module.exports = {
 
     async destroy(req, res) {
         const id = req.params.id;
-      
+
         return await Users.destroy(
             {
                 where: { id }
