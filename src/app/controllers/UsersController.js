@@ -6,7 +6,7 @@ module.exports = {
         return await Users.findAll().then((datas) => {
             res.json(datas);
         }).catch((error) => {
-            return res.json({ menssagem: `Erro ${error}` })
+             res.json({ menssagem: `Erro ${error}` });
         });
     },
 
