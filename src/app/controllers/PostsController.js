@@ -1,8 +1,9 @@
 const Posts = require('../models/Posts');
+console.log(Posts)
 
 module.exports = {
     async index(req, res) {
-        return await Posts.findAll().then((datas) => {
+        return await Posts.findAll({ include: { association: 'post' } },).then((datas) => {
             return res.json(datas);
         }).catch((error) => {
             return res.json({ menssagem: `Erro ${error}` });
