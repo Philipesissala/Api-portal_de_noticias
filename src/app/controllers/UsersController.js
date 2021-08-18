@@ -1,4 +1,5 @@
 const Users = require('../models/Users');
+const Posts = require('../models/Posts');
 
 module.exports = {
     async index(req, res) {
