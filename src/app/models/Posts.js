@@ -8,12 +8,9 @@ const posts = bd.conn.define('postagens', {
         foreignKey: true
     },
     tempo: bd.sequelize.INTEGER,
-    conteudo: bd.sequelize.STRING
+    conteudo: bd.sequelize.TEXT
 });
 
-posts.associate = (models) => {
-    posts.belongsTo(Users, { foreignKey: 'usuario_id', as: 'user' })
-}
 
 module.exports = posts;
 
