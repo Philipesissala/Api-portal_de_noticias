@@ -3,11 +3,16 @@ const Posts = require('../models/Posts');
 
 module.exports = {
     async index(req, res) {
-        return await Users.findAll().then((datas) => {
-            res.json(datas);
-        }).catch((error) => {
-            res.json({ menssagem: `Erro ${error}` });
-        });
+        try {
+            const user = await Users.findAll({
+                include: { model: Posts, as: 'users' },
+            })
+            return res.status(200).json(user);
+
+        } catch (error) {
+            console.log(error.message);
+            res.status(500).json({ message: `Ocorreu um erro ${error}` });
+        }
     },
 
     async create(req, res) {

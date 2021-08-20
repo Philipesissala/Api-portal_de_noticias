@@ -1,7 +1,12 @@
 const bd = require('../config/database');
-const Users = require('./Users');
+const users = require('./Users');
 
 const posts = bd.conn.define('postagens', {
+    id: {
+        type: bd.sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     titulo: bd.sequelize.STRING,
     usuario_id: {
         type: bd.sequelize.INTEGER,
@@ -11,7 +16,12 @@ const posts = bd.conn.define('postagens', {
     conteudo: bd.sequelize.TEXT
 });
 
+posts.associate = () => {
+    posts.belongsTo(users,
+        { foreignKey: 'user_id', as: 'users' });
+};
+
 
 module.exports = posts;
 
-//posts.sync({ force: true });
+posts.sync({ force: true });
